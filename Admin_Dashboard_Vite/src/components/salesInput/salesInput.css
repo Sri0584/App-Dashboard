@@ -1,0 +1,21 @@
+.salesInput {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.salesRow {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.salesRow select,
+.salesRow input {
+	padding: 6px;
+}
+
+.addBtn {
+	margin-top: 10px;
+	padding: 6px 10px;
+	cursor: pointer;
+}

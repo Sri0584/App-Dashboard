@@ -1,0 +1,87 @@
+.user {
+	flex: 4;
+}
+.user-header {
+	display: flex;
+	justify-content: space-between;
+}
+.user-details {
+	display: flex;
+}
+.old-data {
+	flex: 1;
+	-webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+.edit-data {
+	flex: 3;
+	-webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+.oldData-image {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 1px solid white;
+	object-fit: cover;
+	margin: 1rem 2rem;
+}
+.oldData-heading {
+	margin: 1rem 0;
+}
+.oldData-user {
+	display: flex;
+	flex-direction: column;
+}
+.oldData-username {
+	margin-top: 0.3rem;
+}
+.oldData-user span:last-child {
+	color: gray;
+}
+.oldData-title {
+	margin-bottom: 1rem;
+}
+.title {
+	display: flex;
+	align-items: center;
+}
+.account h4 {
+	margin-left: 1rem;
+	color: gray;
+}
+.oldDataAccount-info {
+	display: flex;
+	align-items: center;
+	margin: 1rem;
+	color: grey;
+}
+.oldData-Icon {
+	margin-right: 1rem;
+}
+.account div:last-child {
+	margin-bottom: 2rem;
+}
+.edit-data {
+	padding: 1rem;
+}
+form {
+	margin: 1rem 0.5rem;
+	padding: 1rem;
+}
+.edit-input:focus {
+	border: none;
+	outline: none;
+	background: white;
+}
+.user-label {
+	color: gray;
+}
+.edit-input {
+	border: none;
+	margin: 1rem 0;
+	border-bottom: 1px dotted gray;
+}
+.user-icon {
+	cursor: pointer;
+}

@@ -1,0 +1,44 @@
+import { useGetUsersQuery } from "../../redux/api/userApi";
+import "./WidgetSm.css";
+import { Visibility } from "@mui/icons-material";
+
+const WidgetSm = () => {
+	const { data: users, isLoading, isError } = useGetUsersQuery();
+
+	if (isLoading) return <p>Loading users...</p>;
+	if (isError) return <p>Error loading users</p>;
+
+	return (
+		<div className='widgetSm'>
+			<h1 className='widget-title'>New Join Members</h1>
+
+			<ul>
+				{users?.slice(0, 5).map((user) => (
+					<li className='widgetSm-list' key={user._id}>
+						<img
+							src={
+								user.profilePic ||
+								"https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
+							}
+							alt='widget'
+							className='widget-image'
+						/>
+
+						<div className='widget-user'>
+							<span className='widget-username'>{user.username}</span>
+
+							<span className='widget-title'>{user.email}</span>
+						</div>
+
+						<button className='widget-btn'>
+							<Visibility className='widet-icon' />
+							Display
+						</button>
+					</li>
+				))}
+			</ul>
+		</div>
+	);
+};
+
+export default WidgetSm;

@@ -1,0 +1,234 @@
+import { Link, useNavigate, useParams } from "react-router-dom";
+import "./product.css";
+import Chart from "../../components/chart/Chart";
+import Publish from "@mui/icons-material/Publish";
+import { useEffect, useState } from "react";
+
+import { toast } from "react-toastify";
+import {
+	useGetProductByIdQuery,
+	useUpdateProductMutation,
+} from "../../redux/api/productApi";
+import SalesInput from "../../components/salesInput/SalesInput";
+import Category from "../../components/categories/Category";
+
+export default function Product() {
+	const { id } = useParams();
+	const navigate = useNavigate();
+
+	// ✅ Fetch product
+	const { data: product, isLoading } = useGetProductByIdQuery(id, {
+		refetchOnFocus: true,
+		refetchOnMountOrArgChange: true,
+	});
+
+	// ✅ Mutation
+	const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
+
+	// ✅ Local form state
+	const [formData, setFormData] = useState({
+		title: "",
+		img: "",
+		inStock: "yes",
+		active: "yes",
+		sales: [],
+		categories: [],
+	});
+
+	useEffect(() => {
+		if (product && !formData?.title) {
+			setFormData({
+				title: product.title || "",
+				img: product.img || "",
+				inStock: product.inStock ? "yes" : "no",
+				active: product.active ? "yes" : "no",
+				sales: product.sales || [],
+				categories: product.categories || [],
+			});
+		}
+	}, [formData?.title, product]);
+
+	// ✅ Input handler
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+
+		setFormData((prev) => ({
+			...prev,
+			[name]: value,
+		}));
+	};
+
+	// ✅ Submit update
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		try {
+			await updateProduct({
+				id,
+				...formData,
+				inStock: formData.inStock === "yes",
+				active: formData.active === "yes",
+			}).unwrap();
+
+			toast.success("Product updated!");
+			navigate("/products");
+		} catch (err) {
+			toast.error(err?.data || "Update failed ❌");
+		}
+	};
+
+	if (isLoading) return <div>Loading...</div>;
+
+	return (
+		<div className='product'>
+			{/* HEADER */}
+			<div className='productTitleContainer'>
+				<h1 className='productTitle'>Product</h1>
+			</div>
+
+			{/* TOP SECTION */}
+			<div className='productTop'>
+				<div className='productTopLeft'>
+					<Chart
+						data={formData.sales}
+						datakey='sales'
+						title='Sales Performance'
+						xDatakey='month'
+						grid
+					/>
+				</div>
+
+				<div className='productTopRight'>
+					<div className='productInfoTop'>
+						<img
+							src={
+								formData.img ||
+								"https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg"
+							}
+							alt='Product'
+							className='productInfoImg'
+						/>
+						<span className='productName'>{formData.title}</span>
+					</div>
+
+					<div className='productInfoBottom'>
+						<div className='productInfoItem'>
+							<span className='productInfoKey'>id:</span>
+							<span className='productInfoValue'>{product?._id}</span>
+						</div>
+
+						<div className='productInfoItem'>
+							<span className='productInfoKey'>sales:</span>
+							<span className='productInfoValue'>
+								{formData.sales.reduce((acc, item) => acc + item.sales, 0)}
+							</span>
+						</div>
+
+						<div className='productInfoItem'>
+							<span className='productInfoKey'>active:</span>
+							<span className='productInfoValue'>{formData.active}</span>
+						</div>
+
+						<div className='productInfoItem'>
+							<span className='productInfoKey'>in stock:</span>
+							<span className='productInfoValue'>{formData.inStock}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* FORM */}
+			<div className='productBottom'>
+				<form className='productForm' onSubmit={handleSubmit}>
+					<div className='productFormLeft'>
+						{/* TITLE */}
+						<label>Product Name</label>
+						<input
+							type='text'
+							name='title'
+							value={formData.title}
+							onChange={handleChange}
+						/>
+
+						{/* IMAGE */}
+						<label>Product Image</label>
+						<input
+							type='text'
+							name='img'
+							value={formData.img}
+							onChange={handleChange}
+						/>
+
+						{/* SALES */}
+						<SalesInput
+							sales={formData.sales}
+							onChange={(updatedSales) =>
+								setFormData((prev) => ({
+									...prev,
+									sales: updatedSales,
+								}))
+							}
+						/>
+
+						{/* CATEGORY */}
+						<Category
+							value={formData.categories}
+							handleChange={(e) =>
+								setFormData((prev) => ({
+									...prev,
+									categories: e.target.value,
+								}))
+							}
+						/>
+
+						{/* STOCK */}
+						<label>In Stock</label>
+						<select
+							name='inStock'
+							value={formData.inStock}
+							onChange={handleChange}
+						>
+							<option value='yes'>Yes</option>
+							<option value='no'>No</option>
+						</select>
+
+						{/* ACTIVE */}
+						<label>Active</label>
+						<select
+							name='active'
+							value={formData.active}
+							onChange={handleChange}
+						>
+							<option value='yes'>Yes</option>
+							<option value='no'>No</option>
+						</select>
+					</div>
+
+					{/* RIGHT SIDE */}
+					<div className='productFormRight'>
+						<div className='productUpload'>
+							<img
+								src={
+									formData.img ||
+									"https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg"
+								}
+								alt='Preview'
+								className='productUploadImg'
+							/>
+
+							<label htmlFor='file'>
+								<Publish />
+							</label>
+
+							<input type='file' id='file' style={{ display: "none" }} />
+						</div>
+
+						<button className='productButton' disabled={isUpdating}>
+							{isUpdating ? "Updating..." : "Update"}
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	);
+}
