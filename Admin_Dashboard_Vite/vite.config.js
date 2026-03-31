@@ -13,14 +13,12 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks(id) {
-					if (id.includes("@mui")) {
-						return "mui";
-					}
-					if (id.includes("recharts")) {
-						return "charts";
-					}
-					if (id.includes("formik") || id.includes("yup")) {
-						return "form";
+					if (id.includes("node_modules")) {
+						if (id.includes("@mui")) return "mui";
+						if (id.includes("recharts")) return "charts";
+						if (id.includes("formik")) return "formik";
+						if (id.includes("yup")) return "yup";
+						return "vendor";
 					}
 				},
 			},

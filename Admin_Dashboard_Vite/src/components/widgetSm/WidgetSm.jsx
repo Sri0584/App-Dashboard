@@ -20,7 +20,7 @@ const WidgetSm = () => {
 								user.profilePic ||
 								"https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"
 							}
-							alt='widget'
+							alt='user image'
 							className='widget-image'
 							loading='lazy'
 							width={100}

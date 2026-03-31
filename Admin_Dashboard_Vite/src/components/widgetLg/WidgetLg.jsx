@@ -55,7 +55,7 @@ const WidgetLg = () => {
 										tx.profilePic ||
 										"https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg"
 									}
-									alt='widget'
+									alt='transaction image'
 									loading='lazy'
 									width={100}
 									height={100}

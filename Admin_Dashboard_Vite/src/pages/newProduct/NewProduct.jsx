@@ -78,11 +78,12 @@ export default function NewProduct() {
 			<form className='addProductForm' onSubmit={formik.handleSubmit}>
 				{/* NAME */}
 				<div className='addProductItem'>
-					<label>Name</label>
+					<label htmlFor='title'>Name</label>
 					<input
 						type='text'
 						name='title'
 						placeholder='Apple AirPods'
+						id='title'
 						{...formik.getFieldProps("title")}
 					/>
 					{formik.touched.title && formik.errors.title && (
@@ -90,10 +91,11 @@ export default function NewProduct() {
 					)}
 				</div>
 				<div className='addProductItem'>
-					<label>Image</label>
+					<label htmlFor='img'>Image</label>
 					<input
 						type='text'
 						name='img'
+						id='img'
 						placeholder='https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=500&q=80&fm=webp'
 						{...formik.getFieldProps("img")}
 					/>
@@ -104,10 +106,11 @@ export default function NewProduct() {
 
 				{/* PRICE */}
 				<div className='addProductItem'>
-					<label>Price</label>
+					<label htmlFor='price'>Price</label>
 					<input
 						type='number'
 						name='price'
+						id='price'
 						placeholder='999'
 						{...formik.getFieldProps("price")}
 					/>
@@ -118,8 +121,8 @@ export default function NewProduct() {
 
 				{/* STOCK */}
 				<div className='addProductItem'>
-					<label>In Stock</label>
-					<select {...formik.getFieldProps("inStock")}>
+					<label htmlFor='inStock'>In Stock</label>
+					<select {...formik.getFieldProps("inStock")} id='inStock'>
 						<option value='yes'>Yes</option>
 						<option value='no'>No</option>
 					</select>
@@ -127,14 +130,14 @@ export default function NewProduct() {
 
 				{/* ACTIVE */}
 				<div className='addProductItem'>
-					<label>Active</label>
-					<select {...formik.getFieldProps("active")}>
+					<label htmlFor='active'>Active</label>
+					<select {...formik.getFieldProps("active")} id='active'>
 						<option value='yes'>Yes</option>
 						<option value='no'>No</option>
 					</select>
 				</div>
 				<div className='addProductItem'>
-					<label>Category</label>
+					<label htmlFor='categories'>Category</label>
 					<select
 						value={formik.values.categories}
 						onChange={(e) =>
@@ -143,6 +146,7 @@ export default function NewProduct() {
 								Array.from(e.target.selectedOptions, (opt) => opt.value),
 							)
 						}
+						id='categories'
 					>
 						{options.map((option) => (
 							<option key={option} value={option}>

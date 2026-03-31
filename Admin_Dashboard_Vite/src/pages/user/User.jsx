@@ -71,7 +71,7 @@ const User = () => {
 								:	"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
 
 							}
-							alt='user'
+							alt='user avatar'
 							loading='lazy'
 							className='oldData-image'
 							width={100}
@@ -105,26 +105,29 @@ const User = () => {
 					<h2>Edit</h2>
 
 					<form onSubmit={handleSubmit}>
-						<label>Username</label>
+						<label htmlFor='username'>Username</label>
 						<input
 							type='text'
 							name='username'
+							id='username'
 							value={displayData.username || ""}
 							onChange={handleChange}
 						/>
 
-						<label>Email</label>
+						<label htmlFor='email'>Email</label>
 						<input
 							type='email'
 							name='email'
+							id='email'
 							value={displayData.email || ""}
 							onChange={handleChange}
 						/>
 
-						<label>Transaction</label>
+						<label htmlFor='transaction'>Transaction</label>
 						<input
 							type='text'
 							name='transaction'
+							id='transaction'
 							value={displayData.transaction || ""}
 							onChange={handleChange}
 						/>
@@ -137,7 +140,7 @@ const User = () => {
 										URL.createObjectURL(displayData.avatar)
 									:	""
 								}
-								alt='avatar'
+								alt='Avatar'
 								width='100'
 								loading='lazy'
 								height='100'

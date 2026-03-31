@@ -107,7 +107,7 @@ export default function Product() {
 								formData.img ||
 								"https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg"
 							}
-							alt='Product'
+							alt='Product information'
 							className='productInfoImg'
 							loading='lazy'
 							width={100}
@@ -147,19 +147,21 @@ export default function Product() {
 				<form className='productForm' onSubmit={handleSubmit}>
 					<div className='productFormLeft'>
 						{/* TITLE */}
-						<label>Product Name</label>
+						<label htmlFor='title'>Product Name</label>
 						<input
 							type='text'
 							name='title'
+							id='title'
 							value={formData.title}
 							onChange={handleChange}
 						/>
 
 						{/* IMAGE */}
-						<label>Product Image</label>
+						<label htmlFor='img'>Product Image</label>
 						<input
 							type='text'
 							name='img'
+							id='img'
 							value={formData.img}
 							onChange={handleChange}
 						/>
@@ -187,9 +189,10 @@ export default function Product() {
 						/>
 
 						{/* STOCK */}
-						<label>In Stock</label>
+						<label htmlFor='inStock'>In Stock</label>
 						<select
 							name='inStock'
+							id='inStock'
 							value={formData.inStock}
 							onChange={handleChange}
 						>
@@ -198,9 +201,10 @@ export default function Product() {
 						</select>
 
 						{/* ACTIVE */}
-						<label>Active</label>
+						<label htmlFor='active'>Active</label>
 						<select
 							name='active'
+							id='active'
 							value={formData.active}
 							onChange={handleChange}
 						>
@@ -217,7 +221,7 @@ export default function Product() {
 									formData.img ||
 									"https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg"
 								}
-								alt='Preview'
+								alt='Product Preview'
 								className='productUploadImg'
 								loading='lazy'
 								width={100}

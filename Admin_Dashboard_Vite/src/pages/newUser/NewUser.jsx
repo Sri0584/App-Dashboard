@@ -49,11 +49,12 @@ export default function NewUser() {
 
 			<form className='newUserForm' onSubmit={formik.handleSubmit}>
 				<div className='newUserItem'>
-					<label>Username</label>
+					<label htmlFor='username'>Username</label>
 					<input
 						type='text'
 						name='username'
 						placeholder='john'
+						id='username'
 						value={formik.values.username}
 						onChange={formik.handleChange}
 					/>
@@ -61,68 +62,74 @@ export default function NewUser() {
 				</div>
 
 				<div className='newUserItem'>
-					<label>Full Name</label>
+					<label htmlFor='fullName'>Full Name</label>
 					<input
 						type='text'
 						name='fullName'
 						placeholder='John Smith'
+						id='fullName'
 						value={formik.values.fullName}
 						onChange={formik.handleChange}
 					/>
 				</div>
 
 				<div className='newUserItem'>
-					<label>Email</label>
+					<label htmlFor='email'>Email</label>
 					<input
 						type='email'
 						name='email'
 						placeholder='john@gmail.com'
+						id='email'
 						value={formik.values.email}
 						onChange={formik.handleChange}
 					/>
 				</div>
 
 				<div className='newUserItem'>
-					<label>Password</label>
+					<label htmlFor='password'>Password</label>
 					<input
 						type='password'
 						name='password'
 						placeholder='password'
+						id='password'
 						value={formik.values.password}
 						onChange={formik.handleChange}
 					/>
 				</div>
 
 				<div className='newUserItem'>
-					<label>Phone</label>
+					<label htmlFor='phone'>Phone</label>
 					<input
 						type='text'
 						name='phone'
 						placeholder='+1 123 456 78'
+						id='phone'
 						value={formik.values.phone}
 						onChange={formik.handleChange}
 					/>
 				</div>
 
 				<div className='newUserItem'>
-					<label>Address</label>
+					<label htmlFor='address'>Address</label>
 					<input
 						type='text'
 						name='address'
 						placeholder='New York | USA'
+						id='address'
 						value={formik.values.address}
 						onChange={formik.handleChange}
 					/>
 				</div>
 
 				<div className='newUserItem'>
-					<label>Gender</label>
+					<label htmlFor='gender'>Gender</label>
 					<div className='newUserGender'>
 						{["male", "female", "other"].map((g) => (
-							<label key={g}>
+							<label key={g} htmlFor={`gender-${g}`}>
 								<input
 									type='radio'
 									name='gender'
+									id={`gender-${g}`}
 									value={g}
 									checked={formik.values.gender === g}
 									onChange={formik.handleChange}
@@ -134,10 +141,11 @@ export default function NewUser() {
 				</div>
 
 				<div className='newUserItem'>
-					<label>Active</label>
+					<label htmlFor='active'>Active</label>
 					<select
 						className='newUserSelect'
 						name='active'
+						id='active'
 						value={formik.values.active}
 						onChange={formik.handleChange}
 					>

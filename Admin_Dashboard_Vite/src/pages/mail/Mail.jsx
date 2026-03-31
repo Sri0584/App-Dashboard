@@ -40,10 +40,11 @@ export default function Mail() {
 
 			<form className='mailForm' onSubmit={handleSend}>
 				<div className='mailItem'>
-					<label>To</label>
+					<label htmlFor='to'>To</label>
 					<input
 						type='email'
 						name='to'
+						id='to'
 						value={formData.to}
 						onChange={handleChange}
 						placeholder='example@gmail.com'
@@ -52,10 +53,11 @@ export default function Mail() {
 				</div>
 
 				<div className='mailItem'>
-					<label>Subject</label>
+					<label htmlFor='subject'>Subject</label>
 					<input
 						type='text'
 						name='subject'
+						id='subject'
 						value={formData.subject}
 						onChange={handleChange}
 						placeholder='Enter subject'
@@ -64,9 +66,10 @@ export default function Mail() {
 				</div>
 
 				<div className='mailItem'>
-					<label>Message</label>
+					<label htmlFor='message'>Message</label>
 					<textarea
 						name='message'
+						id='message'
 						value={formData.message}
 						onChange={handleChange}
 						placeholder='Write your message...'
