@@ -51,6 +51,9 @@ const Topbar = () => {
 								}
 								alt='profile'
 								className='topAvatar'
+								loading='lazy'
+								height={100}
+								width={100}
 							/>
 
 							<button className='logoutBtn' onClick={handleLogout}>

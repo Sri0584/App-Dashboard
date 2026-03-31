@@ -1,6 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./user.css";
-
 import LocationSearching from "@mui/icons-material/LocationSearching";
 import MailOutline from "@mui/icons-material/MailOutline";
 import PermIdentity from "@mui/icons-material/PermIdentity";
@@ -17,7 +16,7 @@ const User = () => {
 	const { id } = useParams();
 
 	const { data: user, isLoading } = useGetUserByIdQuery(id);
-	const [updateUser] = useUpdateUserMutation();
+	const [updateUser, { isLoading: isUpdating }] = useUpdateUserMutation();
 
 	// ✅ initialize directly (no useEffect)
 	const [formData, setFormData] = useState(null);
@@ -49,10 +48,10 @@ const User = () => {
 			toast.error(err?.data?.message || "Update failed");
 		}
 	};
-	if (isLoading || !user) return <div>Loading...</div>;
+	if (isLoading || !user || isUpdating) return <div>Loading...</div>;
 
 	// ✅ always read from merged data
-	const displayData = formData || user;
+	const displayData = formData ?? user;
 
 	return (
 		<div className='user'>
@@ -73,7 +72,10 @@ const User = () => {
 
 							}
 							alt='user'
+							loading='lazy'
 							className='oldData-image'
+							width={100}
+							height={100}
 						/>
 
 						<div>
@@ -137,6 +139,9 @@ const User = () => {
 								}
 								alt='avatar'
 								width='100'
+								loading='lazy'
+								height='100'
+								className='avatar-preview'
 							/>
 
 							<label htmlFor='avatar'>

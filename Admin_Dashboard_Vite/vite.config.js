@@ -10,6 +10,20 @@ export default defineConfig({
 		}),
 	],
 	build: {
-		sourcemap: true,
+		rollupOptions: {
+			output: {
+				manualChunks(id) {
+					if (id.includes("@mui")) {
+						return "mui";
+					}
+					if (id.includes("recharts")) {
+						return "charts";
+					}
+					if (id.includes("formik") || id.includes("yup")) {
+						return "form";
+					}
+				},
+			},
+		},
 	},
 });

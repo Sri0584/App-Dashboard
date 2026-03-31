@@ -1,8 +1,7 @@
 import "./newProduct.css";
 import { useNavigate } from "react-router-dom";
-
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { object, string, number, array } from "yup";
 import { toast } from "react-toastify";
 import { useCreateProductMutation } from "../../redux/api/productApi";
 
@@ -19,20 +18,18 @@ export default function NewProduct() {
 	const [createProduct, { isLoading }] = useCreateProductMutation();
 
 	// ✅ validation schema
-	const validationSchema = Yup.object({
-		title: Yup.string()
-			.min(3, "Too short")
-			.required("Product title is required"),
+	const validationSchema = object({
+		title: string().min(3, "Too short").required("Product title is required"),
 
-		price: Yup.number()
+		price: number()
 			.typeError("Price must be a number")
 			.positive("Must be positive")
 			.required("Price is required"),
 
-		inStock: Yup.string().required(),
-		active: Yup.string().required(),
-		img: Yup.string().required(),
-		categories: Yup.array().min(1, "Select at least one category"),
+		inStock: string().required(),
+		active: string().required(),
+		img: string().required(),
+		categories: array().min(1, "Select at least one category"),
 	});
 
 	// ✅ formik setup
@@ -71,6 +68,8 @@ export default function NewProduct() {
 			}
 		},
 	});
+
+	if (isLoading) return <div className='newProduct'>Loading...</div>;
 
 	return (
 		<div className='newProduct'>

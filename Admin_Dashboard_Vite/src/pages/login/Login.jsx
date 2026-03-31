@@ -1,6 +1,5 @@
 import "./login.css";
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
@@ -39,6 +38,8 @@ export default function Login() {
 			navigate("/register");
 		}
 	};
+
+	if (isLoading) return <div className='login'>Loading...</div>;
 
 	return (
 		<div className='login'>

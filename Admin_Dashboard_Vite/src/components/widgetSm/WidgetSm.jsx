@@ -22,6 +22,9 @@ const WidgetSm = () => {
 							}
 							alt='widget'
 							className='widget-image'
+							loading='lazy'
+							width={100}
+							height={100}
 						/>
 
 						<div className='widget-user'>

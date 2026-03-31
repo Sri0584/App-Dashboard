@@ -1,6 +1,6 @@
 import "./newUser.css";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { object, string } from "yup";
 import { toast } from "react-toastify";
 import { useCreateUserMutation } from "../../redux/api/userApi"; // adjust path if needed
 import { useNavigate } from "react-router-dom";
@@ -21,12 +21,12 @@ export default function NewUser() {
 			active: "yes",
 		},
 
-		validationSchema: Yup.object({
-			username: Yup.string().required("Required"),
-			fullName: Yup.string().required("Required"),
-			email: Yup.string().email("Invalid email").required("Required"),
-			password: Yup.string().min(6, "Min 6 chars").required("Required"),
-			phone: Yup.string().required("Required"),
+		validationSchema: object({
+			username: string().required("Required"),
+			fullName: string().required("Required"),
+			email: string().email("Invalid email").required("Required"),
+			password: string().min(6, "Min 6 chars").required("Required"),
+			phone: string().required("Required"),
 		}),
 
 		onSubmit: async (values, { resetForm }) => {
@@ -40,6 +40,8 @@ export default function NewUser() {
 			}
 		},
 	});
+
+	if (isLoading) return <div className='newUser'>Loading...</div>;
 
 	return (
 		<div className='newUser'>

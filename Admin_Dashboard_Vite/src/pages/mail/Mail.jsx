@@ -8,7 +8,7 @@ const initialState = {
 	message: "",
 };
 export default function Mail() {
-	const [sendMail] = useSendMailMutation();
+	const [sendMail, { isLoading }] = useSendMailMutation();
 	const [formData, setFormData] = useState(initialState);
 
 	const handleChange = (e) => {
@@ -31,6 +31,8 @@ export default function Mail() {
 			toast.error(`Email failure, ${error?.data?.message}`);
 		}
 	};
+
+	if (isLoading) return <div className='mail'>Sending Email...</div>;
 
 	return (
 		<div className='mail'>

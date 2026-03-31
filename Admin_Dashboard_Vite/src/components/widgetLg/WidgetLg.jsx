@@ -56,6 +56,9 @@ const WidgetLg = () => {
 										"https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg"
 									}
 									alt='widget'
+									loading='lazy'
+									width={100}
+									height={100}
 								/>
 								<span>{tx.customer || "Unknown User"}</span>
 							</td>

@@ -37,6 +37,8 @@ export default function Register() {
 		}
 	};
 
+	if (isLoading) return <div className='register'>Loading...</div>;
+
 	return (
 		<div className='register'>
 			<h1 className='registerTitle'>Register</h1>

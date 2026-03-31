@@ -16,7 +16,7 @@ const ProductList = () => {
 	});
 
 	// ✅ Delete mutation
-	const [deleteProduct] = useDeleteProductMutation();
+	const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
 
 	// ✅ Transform backend → table rows (NO useState/useEffect)
 	const rows = products.map((product) => ({
@@ -50,7 +50,14 @@ const ProductList = () => {
 			width: 220,
 			renderCell: (params) => (
 				<div className='productListItem'>
-					<img className='productListImg' src={params.row.img} alt='' />
+					<img
+						className='productListImg'
+						src={params.row.img}
+						alt='Product Image'
+						loading='lazy'
+						width={100}
+						height={100}
+					/>
 					{params.row.title}
 				</div>
 			),
@@ -93,7 +100,8 @@ const ProductList = () => {
 		},
 	];
 
-	if (isLoading) return <div className='productList'>Loading...</div>;
+	if (isLoading || isDeleting)
+		return <div className='productList'>Loading...</div>;
 
 	return (
 		<div className='productList'>

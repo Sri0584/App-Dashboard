@@ -1,3 +1,4 @@
+import React from "react";
 import "./Chart.css";
 import {
 	LineChart,
@@ -9,9 +10,7 @@ import {
 	YAxis,
 } from "recharts";
 
-const Chart = ({ title, data, datakey, grid, xDatakey }) => {
-	console.log(title, data, datakey, grid, xDatakey);
-
+const Chart = React.memo(({ title, data, datakey, grid, xDatakey }) => {
 	return (
 		<div className='chart'>
 			<h1 className='chart-title'>{title}</h1>
@@ -27,6 +26,6 @@ const Chart = ({ title, data, datakey, grid, xDatakey }) => {
 			</ResponsiveContainer>
 		</div>
 	);
-};
+});
 
 export default Chart;

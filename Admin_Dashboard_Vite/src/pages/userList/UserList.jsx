@@ -16,7 +16,7 @@ const UserList = () => {
 	});
 
 	// ✅ Delete mutation
-	const [deleteUser] = useDeleteUserMutation();
+	const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
 
 	const rows = users?.map((user) => ({
 		id: user._id, // required for DataGrid
@@ -48,7 +48,14 @@ const UserList = () => {
 			width: 200,
 			renderCell: (params) => (
 				<div className='userList-user'>
-					<img className='UserListImg' src={params.row.avatar} alt='user' />
+					<img
+						className='UserListImg'
+						src={params.row.avatar}
+						alt='user image'
+						loading='lazy'
+						width={100}
+						height={100}
+					/>
 					{params.row.username}
 				</div>
 			),
@@ -83,7 +90,8 @@ const UserList = () => {
 		},
 	];
 
-	if (isLoading) return <div className='userList'>Loading...</div>;
+	if (isLoading || isDeleting)
+		return <div className='userList'>Loading...</div>;
 
 	return (
 		<div className='userList-container'>

@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import "./product.css";
 import Chart from "../../components/chart/Chart";
 import Publish from "@mui/icons-material/Publish";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { toast } from "react-toastify";
 import {
@@ -34,6 +34,8 @@ export default function Product() {
 		sales: [],
 		categories: [],
 	});
+
+	const salesData = useMemo(() => formData?.sales || [], [formData?.sales]);
 
 	useEffect(() => {
 		if (product && !formData?.title) {
@@ -77,7 +79,7 @@ export default function Product() {
 		}
 	};
 
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading || isUpdating) return <div>Loading...</div>;
 
 	return (
 		<div className='product'>
@@ -107,6 +109,9 @@ export default function Product() {
 							}
 							alt='Product'
 							className='productInfoImg'
+							loading='lazy'
+							width={100}
+							height={100}
 						/>
 						<span className='productName'>{formData.title}</span>
 					</div>
@@ -161,7 +166,7 @@ export default function Product() {
 
 						{/* SALES */}
 						<SalesInput
-							sales={formData.sales}
+							sales={salesData}
 							onChange={(updatedSales) =>
 								setFormData((prev) => ({
 									...prev,
@@ -214,6 +219,9 @@ export default function Product() {
 								}
 								alt='Preview'
 								className='productUploadImg'
+								loading='lazy'
+								width={100}
+								height={100}
 							/>
 
 							<label htmlFor='file'>
