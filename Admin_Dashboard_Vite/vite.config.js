@@ -16,6 +16,17 @@ export default defineConfig({
 		setupFiles: "./src/test/setup.js",
 		include: ["src/**/*.test.{js,jsx,ts,tsx}", "src/**/*.spec.{js,jsx,ts,tsx}"],
 		exclude: ["e2e/**"],
+		coverage: {
+			provider: "v8",
+			reporter: ["text", "json", "html"],
+			exclude: [
+				"node_modules/",
+				"src/test/setup.js",
+				"src/main.jsx",
+				"src/**/*.css",
+				"src/**/*.scss",
+			],
+		},
 	},
 	build: {
 		sourcemap: true,
