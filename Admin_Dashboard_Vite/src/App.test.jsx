@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import App from "./App";
@@ -14,6 +13,18 @@ const renderApp = () =>
 	);
 
 describe("App Component", () => {
+	it("toggles the application theme", async () => {
+		renderApp();
+
+		expect(document.documentElement).toHaveAttribute("data-theme", "light");
+
+		await userEvent.click(
+			screen.getByRole("button", { name: /switch to dark theme/i }),
+		);
+
+		expect(document.documentElement).toHaveAttribute("data-theme", "dark");
+	});
+
 	it("renders without crashing", () => {
 		renderApp();
 		expect(screen.getByRole("main")).toBeInTheDocument();

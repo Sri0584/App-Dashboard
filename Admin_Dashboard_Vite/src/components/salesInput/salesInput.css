@@ -1,21 +1,69 @@
 .salesInput {
 	margin-top: 20px;
 	margin-bottom: 20px;
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	padding: 16px;
+	background: var(--bg-soft);
+	color: var(--text);
+}
+
+.salesInput legend {
+	padding: 0 8px;
+	color: var(--text-muted);
+	font-weight: 700;
 }
 
 .salesRow {
 	display: flex;
 	gap: 10px;
 	margin-bottom: 10px;
+	align-items: center;
 }
 
-.salesRow select,
-.salesRow input {
-	padding: 6px;
+.salesRow label {
+	color: var(--text-muted);
+	font-weight: 600;
 }
 
-.addBtn {
+.salesInput .salesRow select,
+.salesInput .salesRow input {
+	padding: 10px 12px;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	background: var(--bg-elevated) !important;
+	color: var(--text);
+	appearance: none;
+}
+
+.salesInput .salesRow select::placeholder,
+.salesInput .salesRow input::placeholder {
+	color: var(--text-muted);
+}
+
+.salesInput .salesRow select:focus,
+.salesInput .salesRow input:focus {
+	outline: none;
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+.salesInput .salesRow button,
+.salesInput .addBtn {
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	background: var(--bg-elevated) !important;
+	color: var(--text);
+}
+
+.salesInput .salesRow button:hover,
+.salesInput .addBtn:hover {
+	background: var(--bg-soft) !important;
+}
+
+.salesInput .addBtn {
 	margin-top: 10px;
-	padding: 6px 10px;
+	padding: 8px 12px;
 	cursor: pointer;
+	font-weight: 600;
 }

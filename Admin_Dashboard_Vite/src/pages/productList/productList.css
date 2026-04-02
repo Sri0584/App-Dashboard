@@ -1,17 +1,86 @@
 .productList {
 	flex: 4;
+	color: var(--text);
+}
+
+.productList .MuiDataGrid-root {
+	border: 1px solid var(--border);
+	border-radius: 18px;
+	background: var(--bg-elevated);
+	color: var(--text);
+	box-shadow: var(--shadow);
+}
+
+.productList .MuiDataGrid-columnHeaders {
+	background: var(--bg-soft);
+	color: var(--text);
+	border-bottom: 1px solid var(--border);
+}
+
+.productList .MuiDataGrid-columnHeaderRow,
+.productList .MuiDataGrid-topContainer,
+.productList .MuiDataGrid-columnHeader {
+	background: var(--bg-soft);
+	color: var(--text);
+}
+
+.productList .MuiDataGrid-columnHeaderTitle,
+.productList .MuiDataGrid-columnHeaderTitleContainer,
+.productList .MuiDataGrid-columnHeaderDraggableContainer {
+	color: var(--text);
+	font-weight: 700;
+}
+
+.productList .MuiDataGrid-columnHeader,
+.productList .MuiDataGrid-cell,
+.productList .MuiDataGrid-footerContainer {
+	border-color: var(--border);
+}
+
+.productList .MuiDataGrid-cell {
+	color: var(--text);
+}
+
+.productList .MuiDataGrid-row:hover {
+	background: color-mix(in srgb, var(--bg-soft) 85%, transparent);
+}
+
+.productList .MuiDataGrid-footerContainer,
+.productList .MuiTablePagination-root,
+.productList .MuiDataGrid-toolbarContainer {
+	background: var(--bg-elevated);
+	color: var(--text);
+}
+
+.productList .MuiDataGrid-columnSeparator,
+.productList .MuiDataGrid-sortIcon,
+.productList .MuiSvgIcon-root,
+.productList .MuiCheckbox-root {
+	color: var(--text-muted);
+}
+
+.productList .MuiCheckbox-root.Mui-checked,
+.productList .MuiDataGrid-menuIconButton,
+.productList .MuiDataGrid-rowCount,
+.productList .MuiTablePagination-selectLabel,
+.productList .MuiTablePagination-displayedRows {
+	color: var(--accent);
+}
+
+.productList .MuiIconButton-root {
+	color: var(--text-muted);
 }
 
 .productAddButton {
 	width: 150px;
 	border: none;
-	padding: 5px;
-	background-color: #3bb077;
+	padding: 8px 12px;
+	background-color: var(--success);
 	color: white;
-	border-radius: 5px;
+	border-radius: 999px;
 	font-size: 16px;
 	cursor: pointer;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 .productListItem {
@@ -28,16 +97,30 @@
 }
 
 .productListEdit {
-	border: none;
-	border-radius: 10px;
-	padding: 5px 10px;
-	background-color: #3bb077;
-	color: white;
+	width: 60px;
+	margin: 7px;
+	padding: 2px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--success);
 	cursor: pointer;
-	margin-right: 20px;
+	border-radius: 10px;
+	border: none;
 }
 
 .productListDelete {
-	color: red;
+	color: var(--danger);
 	cursor: pointer;
+}
+.actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.css-f84crk-MuiDataGrid-root .MuiDataGrid-row.Mui-selected,
+.css-f84crk-MuiDataGrid-root .MuiDataGrid-row.Mui-selected:hover,
+.css-f84crk-MuiDataGrid-root .MuiDataGrid-columnHeaders .MuiDataGrid-filler {
+	background-color: inherit;
 }

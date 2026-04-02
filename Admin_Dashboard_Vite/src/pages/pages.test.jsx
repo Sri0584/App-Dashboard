@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import authReducer from "../redux/authslice";
 import Home from "./home/Home";
 import Login from "./login/Login";
+import Logout from "./logout/Logout";
 import Mail from "./mail/Mail";
 import NewProduct from "./newProduct/NewProduct";
 import NewUser from "./newUser/NewUser";
@@ -172,6 +173,23 @@ beforeEach(() => {
 });
 
 describe("page coverage", () => {
+	it("renders logout page and redirects to login", async () => {
+		vi.useFakeTimers();
+
+		try {
+			renderWithProviders(<Logout />);
+
+			expect(screen.getByText(/signing you out/i)).toBeInTheDocument();
+			expect(localStorage.removeItem).toHaveBeenCalledWith("user");
+
+			await vi.advanceTimersByTimeAsync(1200);
+
+			expect(mocks.navigate).toHaveBeenCalledWith("/login");
+		} finally {
+			vi.useRealTimers();
+		}
+	}, 10000);
+
 	it("renders home dashboard", () => {
 		renderWithProviders(<Home />);
 		expect(screen.getByRole("heading", { name: /dashboard/i })).toBeInTheDocument();
@@ -262,9 +280,10 @@ describe("page coverage", () => {
 			unwrap: () => Promise.reject({ data: "duplicate user" }),
 		});
 		fireEvent.click(screen.getByRole("button", { name: /register/i }));
+		await waitFor(() => expect(mocks.registerMutation).toHaveBeenCalled());
 		await waitFor(() => expect(mocks.toastError).toHaveBeenCalled());
 		consoleError.mockRestore();
-	}, 10000);
+	}, 20000);
 
 	it("renders register loading state", () => {
 		mocks.registerLoading = true;

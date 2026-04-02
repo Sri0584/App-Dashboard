@@ -1,47 +1,92 @@
-.widgetLg{
-    flex: 2;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    padding: 20px;
-    margin-right: 20px;
+.widgetLg {
+	flex: 2;
+	-webkit-box-shadow: var(--shadow);
+	box-shadow: var(--shadow);
+	padding: 20px;
+	background: var(--bg-elevated);
+	color: var(--text);
+	border-radius: 20px;
 }
-.row-image{
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    margin: 1rem 0;
-    border-radius: 50%;
+
+.widgetLgTableWrap {
+	max-height: 420px;
+	overflow-y: auto;
+	overflow-x: auto;
+	padding-right: 4px;
 }
-th{
-    text-align: left;
+
+.widgetLgTableWrap::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
 }
-h3{
-    margin-bottom: 1rem;
+
+.widgetLgTableWrap::-webkit-scrollbar-track {
+	background: var(--bg-soft);
+	border-radius: 999px;
 }
-table{
-    width: 100%;
+
+.widgetLgTableWrap::-webkit-scrollbar-thumb {
+	background: var(--border);
+	border-radius: 999px;
 }
-.first-col{
-    display: flex;
-    align-items: center;
+
+.widgetLgTableWrap::-webkit-scrollbar-thumb:hover {
+	background: var(--text-muted);
 }
-.first-col span{
-    margin-left: .5rem;
+
+.row-image {
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	margin: 1rem 0;
+	border-radius: 50%;
 }
-.widget-button{
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: none;
+
+th {
+	text-align: left;
 }
-.Approved{
-    background-color: rgb(150, 240, 150);
-    color: rgb(1, 36, 9);
+
+h3 {
+	margin-bottom: 1rem;
 }
-.Pending{
-    background-color: aquamarine;
-    color: blue;
+
+table {
+	width: 100%;
+	border-collapse: collapse;
 }
-.Declined{
-    background-color: rgb(240, 199, 199);
-    color: rgb(247, 37, 54);
+
+th,
+td {
+	padding: 10px 8px;
+	border-bottom: 1px solid var(--border);
+}
+
+.first-col {
+	display: flex;
+	align-items: center;
+}
+
+.first-col span {
+	margin-left: 0.5rem;
+}
+
+.widget-button {
+	padding: 0.5rem;
+	border-radius: 10px;
+	border: none;
+}
+
+.Approved {
+	background-color: #d1fae5;
+	color: #166534;
+}
+
+.Pending {
+	background-color: #cffafe;
+	color: #0f3d91;
+}
+
+.Declined {
+	background-color: #fee2e2;
+	color: #b91c1c;
 }

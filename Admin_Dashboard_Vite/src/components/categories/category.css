@@ -1,6 +1,7 @@
-.css-18jp67o-MuiNativeSelect-root-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-	padding: 8.5px 10px !important;
+.categorySelect .MuiSelect-select {
+	padding: 10px 12px !important;
 }
-.css-ovbmre-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
-	margin-bottom: 1rem !important;
+
+.categorySelect .MuiSelect-select em {
+	color: var(--text-muted);
 }

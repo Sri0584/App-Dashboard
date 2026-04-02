@@ -84,7 +84,7 @@ const ProductList = () => {
 			headerName: "Action",
 			width: 160,
 			renderCell: (params) => (
-				<>
+				<div className='actions'>
 					<Link to={"/product/" + params.row.id}>
 						<button className='productListEdit' aria-label='Edit product'>
 							Edit
@@ -96,7 +96,7 @@ const ProductList = () => {
 						aria-label='Delete product'
 						onClick={() => handleDelete(params.row.id)}
 					/>
-				</>
+				</div>
 			),
 		},
 	];

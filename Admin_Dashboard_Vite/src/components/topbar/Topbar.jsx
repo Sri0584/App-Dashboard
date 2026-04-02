@@ -1,18 +1,22 @@
 import "./Topbar.scss";
-import { NotificationsNone, Language, Settings } from "@mui/icons-material";
-import { useSelector, useDispatch } from "react-redux";
-
+import {
+	DarkMode,
+	Language,
+	LightMode,
+	NotificationsNone,
+	Settings,
+} from "@mui/icons-material";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../../redux/authslice";
+import { useTheme } from "../../theme/ThemeProvider";
 
 const Topbar = () => {
 	const { user } = useSelector((state) => state.auth);
-	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const { isDark, toggleTheme } = useTheme();
 
 	const handleLogout = () => {
-		dispatch(logout());
-		navigate("/login");
+		navigate("/logout");
 	};
 
 	return (
@@ -37,7 +41,24 @@ const Topbar = () => {
 						<Settings />
 					</div>
 
-					{/* ✅ USER SECTION */}
+					<button
+						type='button'
+						className='themeToggleBtn'
+						onClick={toggleTheme}
+						aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+					>
+						{isDark ?
+							<>
+								<LightMode fontSize='small' />
+								<span>Light</span>
+							</>
+						:	<>
+								<DarkMode fontSize='small' />
+								<span>Dark</span>
+							</>
+						}
+					</button>
+
 					{user ?
 						<>
 							<span className='topbarUsername'>
@@ -45,7 +66,10 @@ const Topbar = () => {
 							</span>
 
 							<img
-								src={user.profilePic || "https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg"}
+								src={
+									user.profilePic ||
+									"https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg"
+								}
 								alt='profile'
 								className='topAvatar'
 								loading='lazy'

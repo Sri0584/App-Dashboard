@@ -3,13 +3,72 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+:root {
+	--bg: #f4f7fb;
+	--bg-elevated: #ffffff;
+	--bg-soft: #eef3fb;
+	--text: #172033;
+	--text-muted: #5f6b85;
+	--border: #d7dfec;
+	--shadow: 0px 14px 30px -18px rgba(15, 23, 42, 0.45);
+	--accent: #2563eb;
+	--accent-strong: #1d4ed8;
+	--success: #198754;
+	--danger: #b91c1c;
+}
+
+:root[data-theme="dark"] {
+	--bg: #07111f;
+	--bg-elevated: #111c2d;
+	--bg-soft: #162338;
+	--text: #eef4ff;
+	--text-muted: #9badcc;
+	--border: #263752;
+	--shadow: 0px 18px 34px -20px rgba(0, 0, 0, 0.75);
+	--accent: #7dd3fc;
+	--accent-strong: #38bdf8;
+	--success: #34d399;
+	--danger: #f87171;
+}
+
+html,
+body,
+#root {
+	min-height: 100%;
+}
+
+body {
+	background:
+		radial-gradient(circle at top, rgba(37, 99, 235, 0.16), transparent 28%),
+		var(--bg);
+	color: var(--text);
+	transition:
+		background-color 0.25s ease,
+		color 0.25s ease;
+}
+
 .container {
 	display: flex;
-	margin-top: 1rem;
+	margin-top: calc(10px + 1rem);
 }
+
+.authLayout {
+	min-height: 100vh;
+}
+
 a {
 	text-decoration: none;
+	color: inherit;
 }
+
 button {
 	cursor: pointer;
+}
+
+input,
+textarea,
+select,
+button {
+	font: inherit;
 }

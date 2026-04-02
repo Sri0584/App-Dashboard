@@ -12,6 +12,9 @@ vi.mock("../pages/login/Login", () => ({
 vi.mock("../pages/register/Register", () => ({
 	default: () => <div>Register Page</div>,
 }));
+vi.mock("../pages/logout/Logout", () => ({
+	default: () => <div>Logout Page</div>,
+}));
 vi.mock("../pages/mail/Mail", () => ({ default: () => <div>Mail Page</div> }));
 vi.mock("../pages/products/Product", () => ({
 	default: () => <div>Product Page</div>,
@@ -59,5 +62,17 @@ describe("RouteList", () => {
 			</Provider>,
 		);
 		expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
+	});
+
+	it("renders the logout route", async () => {
+		render(
+			<Provider store={store}>
+				<MemoryRouter initialEntries={["/logout"]}>
+					<RouteList />
+				</MemoryRouter>
+			</Provider>,
+		);
+
+		expect(await screen.findByText(/logout page/i)).toBeInTheDocument();
 	});
 });

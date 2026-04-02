@@ -74,7 +74,7 @@ const UserList = () => {
 			headerName: "Action",
 			width: 150,
 			renderCell: (params) => (
-				<>
+				<div className='actions'>
 					<Link to={"/user/" + params.row.id}>
 						<button className='edit' aria-label='Edit user'>
 							Edit
@@ -86,7 +86,7 @@ const UserList = () => {
 						aria-label='Delete user'
 						onClick={() => handleDelete(params.row.id)}
 					/>
-				</>
+				</div>
 			),
 		},
 	];

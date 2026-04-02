@@ -3,6 +3,7 @@ import Home from "../pages/home/Home";
 import React, { Suspense } from "react";
 
 const Login = React.lazy(() => import("../pages/login/Login"));
+const Logout = React.lazy(() => import("../pages/logout/Logout"));
 const Register = React.lazy(() => import("../pages/register/Register"));
 const Mail = React.lazy(() => import("../pages/mail/Mail"));
 const Product = React.lazy(() => import("../pages/products/Product"));
@@ -32,6 +33,7 @@ const RouteList = () => {
 
 				{/* AUTH */}
 				<Route path='/login' element={<Login />} />
+				<Route path='/logout' element={<Logout />} />
 				<Route path='/register' element={<Register />} />
 
 				<Route path='/mail' element={<Mail />} />

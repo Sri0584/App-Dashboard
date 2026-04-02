@@ -12,6 +12,7 @@ import Sidebar from "./sidebar/Sidebar";
 import Topbar from "./topbar/Topbar";
 import WidgetLg from "./widgetLg/WidgetLg";
 import WidgetSm from "./widgetSm/WidgetSm";
+import { ThemeProvider } from "../theme/ThemeProvider";
 
 const mocks = vi.hoisted(() => ({
 	navigate: vi.fn(),
@@ -62,9 +63,11 @@ const createStore = (preloadedState = {}) =>
 
 const renderWithProviders = (ui, preloadedState) =>
 	render(
-		<Provider store={createStore(preloadedState)}>
-			<MemoryRouter>{ui}</MemoryRouter>
-		</Provider>,
+		<ThemeProvider>
+			<Provider store={createStore(preloadedState)}>
+				<MemoryRouter>{ui}</MemoryRouter>
+			</Provider>
+		</ThemeProvider>,
 	);
 
 beforeEach(() => {
@@ -209,8 +212,7 @@ describe("component coverage", () => {
 
 		expect(screen.getByText(/jane/i)).toBeInTheDocument();
 		fireEvent.click(screen.getByRole("button", { name: /logout/i }));
-		expect(mocks.navigate).toHaveBeenCalledWith("/login");
-		expect(localStorage.removeItem).toHaveBeenCalledWith("user");
+		expect(mocks.navigate).toHaveBeenCalledWith("/logout");
 	});
 
 	it("falls back to the user email in the topbar", () => {
@@ -255,6 +257,22 @@ describe("component coverage", () => {
 		});
 
 		expect(await screen.findByText(/maria/i)).toBeInTheDocument();
+	});
+
+	it("renders widget transactions empty state accessibly", () => {
+		mocks.useGetTransactionsQuery.mockReturnValue({
+			data: [],
+			isLoading: false,
+		});
+
+		renderWithProviders(<WidgetLg />);
+
+		expect(
+			screen.getByText(/no transactions available/i),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(/recent customer transactions/i),
+		).toBeInTheDocument();
 	});
 
 	it("renders widget transactions loading state", () => {

@@ -1,6 +1,7 @@
 .mail {
 	flex: 4;
 	padding: 20px;
+	color: var(--text);
 }
 
 .mailTitle {
@@ -13,6 +14,9 @@
 	flex-direction: column;
 	gap: 15px;
 	max-width: 500px;
+	background: var(--bg-elevated);
+	border-radius: 16px;
+	box-shadow: var(--shadow);
 }
 
 .mailItem {
@@ -23,20 +27,23 @@
 .mailItem label {
 	margin-bottom: 5px;
 	font-weight: 600;
+	color: var(--text-muted);
 }
 
 .mailItem input,
 .mailItem textarea {
 	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: var(--bg-elevated);
+	color: var(--text);
 }
 
 .mailButton {
 	padding: 10px;
-	background-color: teal;
+	background-color: var(--accent);
 	color: white;
 	border: none;
 	cursor: pointer;
-	border-radius: 5px;
+	border-radius: 8px;
 }

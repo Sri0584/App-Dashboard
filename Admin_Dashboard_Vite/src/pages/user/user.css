@@ -1,87 +1,183 @@
 .user {
 	flex: 4;
+	color: var(--text);
 }
+
 .user-header {
 	display: flex;
 	justify-content: space-between;
 }
+
 .user-details {
 	display: flex;
+	flex-direction: column;
 }
+
 .old-data {
 	flex: 1;
-	-webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-	box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: var(--shadow);
+	box-shadow: var(--shadow);
+	background: var(--bg-elevated);
+	border-radius: 16px;
+	padding: 1rem;
+}
+.edit-form {
+	display: flex;
+	flex-direction: column;
 }
 .edit-data {
 	flex: 3;
-	-webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-	box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: var(--shadow);
+	box-shadow: var(--shadow);
+	background: var(--bg-elevated);
+	border-radius: 16px;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
 }
+
+.edit-data h2,
+.old-data,
+.edit-data,
+.title span,
+.old-data span {
+	color: var(--text);
+}
+
 .oldData-image {
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	border: 1px solid white;
+	border: 1px solid var(--border);
 	object-fit: cover;
 	margin: 1rem 2rem;
 }
+
 .oldData-heading {
 	margin: 1rem 0;
 }
+
 .oldData-user {
 	display: flex;
 	flex-direction: column;
 }
+
 .oldData-username {
 	margin-top: 0.3rem;
 }
+
 .oldData-user span:last-child {
-	color: gray;
+	color: var(--text-muted);
 }
+
 .oldData-title {
 	margin-bottom: 1rem;
 }
+
 .title {
 	display: flex;
 	align-items: center;
 }
+
 .account h4 {
 	margin-left: 1rem;
-	color: gray;
+	color: var(--text-muted);
 }
+
 .oldDataAccount-info {
 	display: flex;
 	align-items: center;
 	margin: 1rem;
-	color: grey;
+	color: var(--text-muted);
 }
+
 .oldData-Icon {
 	margin-right: 1rem;
 }
+
 .account div:last-child {
 	margin-bottom: 2rem;
 }
-.edit-data {
-	padding: 1rem;
-}
+
 form {
 	margin: 1rem 0.5rem;
 	padding: 1rem;
 }
-.edit-input:focus {
-	border: none;
+
+.edit-form label {
+	display: block;
+	margin-bottom: 8px;
+	color: var(--text-muted);
+	font-weight: 600;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="email"] {
+	width: 100%;
+	margin: 0 0 16px;
+	padding: 10px 12px;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	background: var(--bg-elevated);
+	color: var(--text);
+}
+
+.edit-form input[type="text"]:focus,
+.edit-form input[type="email"]:focus {
 	outline: none;
-	background: white;
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
 }
+
+.edit-form > div:last-of-type {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 12px;
+}
+
+.edit-form > div:last-of-type label {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 12px;
+	border-radius: 10px;
+	background: var(--bg-soft);
+	color: var(--text);
+	border: 1px solid var(--border);
+	cursor: pointer;
+}
+
+.edit-form button {
+	align-self: flex-start;
+	margin-top: 20px;
+	padding: 10px 16px;
+	border: none;
+	border-radius: 10px;
+	background: var(--accent);
+	color: white;
+	font-weight: 700;
+}
+
+.avatar-preview {
+	border-radius: 12px;
+	border: 1px solid var(--border);
+	object-fit: cover;
+	background: var(--bg-soft);
+}
+
 .user-label {
-	color: gray;
+	color: var(--text-muted);
 }
+
 .edit-input {
 	border: none;
 	margin: 1rem 0;
-	border-bottom: 1px dotted gray;
+	border-bottom: 1px dotted var(--border);
+	background: transparent;
+	color: var(--text);
 }
+
 .user-icon {
 	cursor: pointer;
 }

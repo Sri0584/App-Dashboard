@@ -78,7 +78,7 @@ const User = () => {
 						/>
 
 						<div>
-							<span>{displayData.username}</span>
+							<span>{displayData.username}&nbsp;</span>
 							<span>Software Engineer</span>
 						</div>
 					</div>
@@ -103,7 +103,7 @@ const User = () => {
 				<div className='edit-data'>
 					<h2>Edit</h2>
 
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={handleSubmit} className='edit-form'>
 						<label htmlFor='username'>Username</label>
 						<input
 							type='text'

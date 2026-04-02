@@ -18,12 +18,41 @@ const Category = ({ value, handleChange }) => {
 
 	return (
 		<Select
+			className='categorySelect'
 			onChange={handleChange}
 			name='categories'
 			value={normalizedValue}
 			multiple={isMultiple}
 			displayEmpty
 			fullWidth
+			sx={{
+				marginBottom: "1rem",
+				backgroundColor: "var(--bg-elevated)",
+				color: "var(--text)",
+				borderRadius: "10px",
+				"& .MuiOutlinedInput-notchedOutline": {
+					borderColor: "var(--border)",
+				},
+				"&:hover .MuiOutlinedInput-notchedOutline": {
+					borderColor: "var(--accent)",
+				},
+				"&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+					borderColor: "var(--accent)",
+				},
+				"& .MuiSelect-icon": {
+					color: "var(--text-muted)",
+				},
+			}}
+			MenuProps={{
+				PaperProps: {
+					sx: {
+						backgroundColor: "var(--bg-elevated)",
+						color: "var(--text)",
+						border: "1px solid var(--border)",
+						boxShadow: "var(--shadow)",
+					},
+				},
+			}}
 			renderValue={(selected) => {
 				if (
 					(Array.isArray(selected) && selected.length === 0) ||
