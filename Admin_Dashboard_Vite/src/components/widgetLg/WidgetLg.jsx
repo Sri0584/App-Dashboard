@@ -4,7 +4,7 @@ import "./WidgetLg.css";
 import { io } from "socket.io-client";
 
 const socket = io(
-	"http://app-dashboard-api-c4gvdch3fvgcgtcz.westeurope-01.azurewebsites.net",
+	"https://app-dashboard-api-c4gvdch3fvgcgtcz.westeurope-01.azurewebsites.net",
 );
 
 const WidgetLg = () => {
