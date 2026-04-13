@@ -33,6 +33,12 @@ app.use("/api/users", userRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/mail", sendMail);
+app.get("/health", (req, res) => {
+	res.status(200).json({
+		ok: true,
+		message: "Backend is running",
+	});
+});
 // ✅ make io accessible in routes
 app.set("io", io);
 
