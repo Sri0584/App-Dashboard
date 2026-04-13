@@ -22,7 +22,10 @@ const io = new Server(server, {
 app.use(express.json());
 app.use(
 	cors({
-		origin: process.env.CLIENT_URL || "http://localhost:5174",
+		origin:
+			"https://app-dashboard-cjgnd4cee4a5gshw.westeurope-01.azurewebsites.net" ||
+			process.env.CLIENT_URL ||
+			"http://localhost:5174",
 		credentials: true,
 	}),
 );

@@ -3,7 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
 	reducerPath: "api",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "http://localhost:5000/api",
+		baseUrl:
+			"https://app-dashboard-cjgnd4cee4a5gshw.westeurope-01.azurewebsites.net/api",
 		credentials: "include", // Include cookies with all requests
 		prepareHeaders: (headers, { getState }) => {
 			const tok = JSON.parse(localStorage.getItem("user")) || {};
