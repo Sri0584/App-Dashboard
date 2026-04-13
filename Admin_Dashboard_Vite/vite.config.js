@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
 	plugins: [
@@ -9,7 +8,6 @@ export default defineConfig({
 				plugins: ["babel-plugin-react-compiler"], // pass compiler via react plugin
 			},
 		}),
-		VitePWA({ registerType: "autoUpdate" }),
 	],
 	test: {
 		environment: "jsdom",
