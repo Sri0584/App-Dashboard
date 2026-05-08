@@ -7,8 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./theme/ThemeProvider";
 
-import "./App.css";
-
 const AUTH_ROUTES = new Set(["/login", "/logout", "/register"]);
 
 function AppLayout() {

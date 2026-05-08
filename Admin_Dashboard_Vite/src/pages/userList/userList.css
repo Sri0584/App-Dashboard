@@ -1,21 +1,25 @@
 .userList-container {
+	flex: 1;
+	min-width: 0;
 	display: flex;
 	flex-direction: column;
+	gap: 14px;
 	color: var(--text);
 }
 
 .userList {
-	max-height: 500px;
-	height: calc(100vh - 120px);
-	flex: 4;
+	height: calc(100vh - var(--topbar-height) - (var(--page-gutter) * 2) - 54px);
+	min-height: 520px;
+	width: 100%;
 }
 
 .userList .MuiDataGrid-root {
 	border: 1px solid var(--border);
-	border-radius: 18px;
+	border-radius: var(--radius-lg);
 	background: var(--bg-elevated);
 	color: var(--text);
 	box-shadow: var(--shadow);
+	overflow: hidden;
 }
 
 .userList .MuiDataGrid-columnHeaders {
@@ -35,7 +39,7 @@
 .userList .MuiDataGrid-columnHeaderTitleContainer,
 .userList .MuiDataGrid-columnHeaderDraggableContainer {
 	color: var(--text);
-	font-weight: 700;
+	font-weight: 800;
 }
 
 .userList .MuiDataGrid-columnHeader,
@@ -81,15 +85,21 @@
 .userList-user {
 	display: flex;
 	align-items: center;
+	gap: 10px;
+	min-width: 0;
 }
 
 .userList-container button {
 	background-color: var(--success);
 	color: white;
-	padding: 10px 20px;
+	padding: 10px 16px;
 	border: none;
-	border-radius: 20px;
-	margin-right: 1rem;
+	border-radius: 999px;
+	font-weight: 800;
+}
+
+.userList-container > a button {
+	min-width: 150px;
 }
 
 .UserListImg {
@@ -97,24 +107,24 @@
 	height: 32px;
 	object-fit: cover;
 	border-radius: 50%;
-	margin-right: 1rem;
+	flex: 0 0 auto;
 }
+
 .actions {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	gap: 10px;
 }
+
 .userList-container a:-webkit-any-link {
 	cursor: auto;
 }
 
 .userList-container .edit {
-	background-color: var(--success);
 	cursor: pointer;
-	width: 60px;
-	margin: 7px;
-	padding: 2px;
-	height: 30px;
+	min-width: 64px;
+	padding: 6px 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -123,4 +133,14 @@
 .delete {
 	color: var(--danger);
 	cursor: pointer;
+}
+
+@media (max-width: 640px) {
+	.userList {
+		height: 620px;
+	}
+
+	.userList-container > a button {
+		width: 100%;
+	}
 }

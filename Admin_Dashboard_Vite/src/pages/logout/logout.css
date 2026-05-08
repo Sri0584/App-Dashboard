@@ -2,7 +2,7 @@
 	min-height: 100vh;
 	display: grid;
 	place-items: center;
-	padding: 32px;
+	padding: clamp(20px, 5vw, 48px);
 	background:
 		radial-gradient(circle at top left, rgba(248, 113, 113, 0.18), transparent 30%),
 		radial-gradient(circle at bottom right, rgba(125, 211, 252, 0.2), transparent 32%),
@@ -12,7 +12,7 @@
 
 .logoutCard {
 	width: min(100%, 460px);
-	padding: 36px;
+	padding: clamp(26px, 5vw, 40px);
 	border-radius: 28px;
 	background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
 	box-shadow: 0 24px 80px -36px rgba(15, 23, 42, 0.85);
@@ -22,8 +22,8 @@
 }
 
 .logoutEyebrow {
-	font-size: 12px;
-	font-weight: 700;
+	font-size: 0.75rem;
+	font-weight: 800;
 	letter-spacing: 0.18em;
 	text-transform: uppercase;
 	color: var(--danger);
@@ -31,7 +31,7 @@
 }
 
 .logoutTitle {
-	font-size: 34px;
+	font-size: clamp(2rem, 7vw, 3rem);
 	font-weight: 800;
 	color: var(--text);
 	margin-bottom: 12px;

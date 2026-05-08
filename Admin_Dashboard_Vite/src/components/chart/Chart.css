@@ -1,15 +1,25 @@
 .chart {
-	margin: 20px;
-	padding: 20px;
-	-webkit-box-shadow: var(--shadow);
+	padding: var(--card-padding);
 	box-shadow: var(--shadow);
-	border-radius: 10px;
-	width: 98%;
-	min-height: 0;
-	height: 345px;
+	border-radius: var(--radius-lg);
+	width: 100%;
+	min-width: 0;
+	height: clamp(320px, 42vw, 420px);
 	background: var(--bg-elevated);
 	color: var(--text);
+	border: 1px solid color-mix(in srgb, var(--border) 68%, transparent);
 }
+
+.chart-title {
+	margin-bottom: 12px;
+}
+
 .chart .recharts-wrapper {
-	padding: 10px;
+	padding: 6px 0;
+}
+
+@media (max-width: 560px) {
+	.chart {
+		height: 340px;
+	}
 }

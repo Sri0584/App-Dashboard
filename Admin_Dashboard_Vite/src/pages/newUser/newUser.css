@@ -1,66 +1,93 @@
 .newUser {
-	flex: 4;
+	flex: 1;
+	min-width: 0;
 	color: var(--text);
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
 }
 
 .newUserForm {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 18px;
+	width: min(100%, 980px);
+	padding: var(--card-padding);
 	background: var(--bg-elevated);
-	border-radius: 16px;
+	border-radius: var(--radius-lg);
 	box-shadow: var(--shadow);
+	border: 1px solid color-mix(in srgb, var(--border) 68%, transparent);
 }
 
 .newUserItem {
-	width: 400px;
 	display: flex;
 	flex-direction: column;
-	margin-top: 10px;
-	margin-right: 20px;
+	gap: 8px;
+	min-width: 0;
 }
 
 .newUserItem > label {
-	margin-bottom: 10px;
-	font-size: 14px;
-	font-weight: 600;
+	font-size: 0.9rem;
+	font-weight: 700;
 	color: var(--text-muted);
 }
 
-.newUserItem > input {
-	height: 20px;
-	padding: 10px;
+.newUserItem > input,
+.newUserSelect {
+	width: 100%;
+	min-height: 44px;
+	padding: 10px 12px;
 	border: 1px solid var(--border);
-	border-radius: 8px;
+	border-radius: 12px;
 	background: var(--bg-elevated);
 	color: var(--text);
+}
+
+.newUserItem > input:focus,
+.newUserSelect:focus {
+	outline: none;
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+}
+
+.newUserGender {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-wrap: wrap;
+	padding-top: 8px;
 }
 
 .newUserGender > input {
-	margin-top: 15px;
+	margin: 0;
+	accent-color: var(--accent);
 }
 
 .newUserGender > label {
-	margin: 10px;
-	font-size: 18px;
+	margin-right: 8px;
+	font-size: 1rem;
 	color: var(--text-muted);
 }
 
-.newUserSelect {
-	height: 40px;
-	border-radius: 8px;
-	border: 1px solid var(--border);
-	background: var(--bg-elevated);
-	color: var(--text);
-}
-
 .newUserButton {
-	width: 200px;
+	width: min(100%, 220px);
 	border: none;
 	background-color: var(--accent);
 	color: white;
-	padding: 7px 10px;
-	font-weight: 600;
-	border-radius: 10px;
-	margin-top: 30px;
+	padding: 12px 18px;
+	font-weight: 800;
+	border-radius: 12px;
 	cursor: pointer;
+	align-self: end;
+}
+
+@media (max-width: 760px) {
+	.newUserForm {
+		grid-template-columns: 1fr;
+	}
+
+	.newUserButton {
+		width: 100%;
+		align-self: stretch;
+	}
 }
