@@ -2,7 +2,8 @@
 	min-height: 100vh;
 	display: grid;
 	place-items: center;
-	padding: 32px;
+	gap: 20px;
+	padding: clamp(20px, 5vw, 48px);
 	background:
 		radial-gradient(circle at top left, rgba(125, 211, 252, 0.22), transparent 30%),
 		radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.28), transparent 35%),
@@ -11,22 +12,20 @@
 }
 
 .loginTitle {
-	position: static;
-	font-size: 34px;
+	font-size: clamp(2rem, 7vw, 3rem);
 	font-weight: 800;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	color: #f8fbff;
-	margin-bottom: 20px;
 	text-align: center;
 }
 
 .loginForm {
-	width: min(100%, 420px);
+	width: min(100%, 440px);
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
-	padding: 36px;
+	padding: clamp(24px, 5vw, 40px);
 	border-radius: 28px;
 	background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
 	box-shadow: 0 24px 80px -36px rgba(15, 23, 42, 0.85);
@@ -35,10 +34,11 @@
 }
 
 .loginInput {
+	width: 100%;
 	padding: 14px 16px;
 	border: 1px solid var(--border);
 	border-radius: 14px;
-	font-size: 15px;
+	font-size: 0.95rem;
 	transition:
 		border-color 0.2s ease,
 		box-shadow 0.2s ease,
@@ -60,7 +60,7 @@
 	border-radius: 14px;
 	background: linear-gradient(135deg, var(--accent), var(--accent-strong));
 	color: #fff;
-	font-weight: 700;
+	font-weight: 800;
 	letter-spacing: 0.02em;
 	cursor: pointer;
 	transition:
@@ -80,19 +80,4 @@
 	cursor: not-allowed;
 	box-shadow: none;
 	transform: none;
-}
-
-@media (max-width: 480px) {
-	.login {
-		padding: 20px;
-	}
-
-	.loginForm {
-		padding: 28px 22px;
-		border-radius: 22px;
-	}
-
-	.loginTitle {
-		font-size: 28px;
-	}
 }
