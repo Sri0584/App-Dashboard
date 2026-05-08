@@ -85,10 +85,13 @@ const ProductList = () => {
 			width: 160,
 			renderCell: (params) => (
 				<div className='actions'>
-					<Link to={"/product/" + params.row.id}>
-						<button className='productListEdit' aria-label='Edit product'>
-							Edit
-						</button>
+					<Link
+						to={"/product/" + params.row.id}
+						className='productListEdit'
+						aria-label='Edit product'
+						role='button'
+					>
+						Edit
 					</Link>
 
 					<DeleteOutline

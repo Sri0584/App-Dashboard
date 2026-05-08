@@ -1,23 +1,32 @@
 .widgetSm {
-	flex: 1;
-	-webkit-box-shadow: var(--shadow);
+	min-width: 0;
 	box-shadow: var(--shadow);
-	padding: 20px;
-	margin-right: 20px;
+	padding: var(--card-padding);
 	background: var(--bg-elevated);
 	color: var(--text);
-	border-radius: 20px;
+	border-radius: var(--radius-lg);
+	border: 1px solid color-mix(in srgb, var(--border) 68%, transparent);
+}
+
+.widgetSm ul {
+	list-style: none;
+	display: grid;
+	gap: 12px;
 }
 
 .widgetSm-list {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 1rem;
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 12px;
+	padding: 10px;
+	border-radius: 14px;
+	background: color-mix(in srgb, var(--bg-soft) 52%, transparent);
 }
 
 .widget-image {
-	width: 50px;
-	height: 50px;
+	width: 48px;
+	height: 48px;
 	border-radius: 50%;
 	border: 1px solid var(--border);
 	object-fit: cover;
@@ -26,27 +35,48 @@
 .widget-user {
 	display: flex;
 	flex-direction: column;
+	min-width: 0;
+}
+
+.widget-user span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .widget-user span:last-child {
 	color: var(--text-muted);
+	font-size: 0.875rem;
 }
 
 .widet-icon {
-	margin-right: 1rem;
+	margin-right: 6px;
 }
 
 .widget-btn {
 	display: flex;
 	align-items: center;
-	padding: 0 1rem;
-	border-radius: 20px;
+	padding: 8px 12px;
+	border-radius: 999px;
 	border: 1px solid var(--border);
 	cursor: pointer;
 	background: var(--bg-soft);
 	color: var(--text);
+	font-weight: 700;
+	white-space: nowrap;
 }
 
 .widget-title {
 	margin-bottom: 1rem;
+}
+
+@media (max-width: 560px) {
+	.widgetSm-list {
+		grid-template-columns: auto minmax(0, 1fr);
+	}
+
+	.widget-btn {
+		grid-column: 1 / -1;
+		justify-content: center;
+	}
 }

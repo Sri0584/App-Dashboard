@@ -1,57 +1,76 @@
 .newProduct {
-	flex: 4;
+	flex: 1;
+	min-width: 0;
 	color: var(--text);
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
 }
 
 .addProductForm {
-	margin-top: 10px;
+	width: min(100%, 760px);
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 18px;
+	padding: var(--card-padding);
 	background: var(--bg-elevated);
-	border-radius: 16px;
+	border-radius: var(--radius-lg);
 	box-shadow: var(--shadow);
+	border: 1px solid color-mix(in srgb, var(--border) 68%, transparent);
 }
 
 .error {
 	color: var(--danger);
-	font-size: 12px;
+	font-size: 0.8rem;
 	margin-top: 4px;
 }
 
 .addProductItem {
-	width: 250px;
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 10px;
+	gap: 8px;
+	min-width: 0;
 }
 
 .addProductItem > label {
 	color: var(--text-muted);
-	font-weight: 600;
-	margin-bottom: 10px;
+	font-weight: 700;
 }
 
-.addProductItem > input {
-	padding: 10px;
-	border: 1px solid var(--border);
-	border-radius: 8px;
-	background: var(--bg-elevated);
-	color: var(--text);
-}
-
+.addProductItem > input,
 .addProductItem > select {
-	padding: 10px;
+	width: 100%;
+	padding: 12px 14px;
 	border: 1px solid var(--border);
-	border-radius: 8px;
+	border-radius: 12px;
 	background: var(--bg-elevated);
 	color: var(--text);
+}
+
+.addProductItem > input:focus,
+.addProductItem > select:focus {
+	outline: none;
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
 }
 
 .addProductButton {
-	margin-top: 10px;
-	padding: 7px 10px;
+	justify-self: start;
+	padding: 12px 18px;
 	border: none;
-	border-radius: 10px;
+	border-radius: 12px;
 	background-color: var(--accent);
 	color: white;
-	font-weight: 600;
+	font-weight: 800;
 	cursor: pointer;
+}
+
+@media (max-width: 700px) {
+	.addProductForm {
+		grid-template-columns: 1fr;
+	}
+
+	.addProductButton {
+		width: 100%;
+	}
 }

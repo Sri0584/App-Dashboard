@@ -16,6 +16,13 @@
 	--accent-strong: #1d4ed8;
 	--success: #198754;
 	--danger: #b91c1c;
+	--page-gutter: clamp(16px, 3vw, 32px);
+	--card-padding: clamp(16px, 2.2vw, 24px);
+	--radius-lg: 20px;
+	--topbar-height: 64px;
+	font-family:
+		Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 }
 
 :root[data-theme="dark"] {
@@ -38,11 +45,20 @@ body,
 	min-height: 100%;
 }
 
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+}
+
 body {
 	background:
 		radial-gradient(circle at top, rgba(37, 99, 235, 0.16), transparent 28%),
 		var(--bg);
 	color: var(--text);
+	font-family: inherit;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 	transition:
 		background-color 0.25s ease,
 		color 0.25s ease;
@@ -50,7 +66,16 @@ body {
 
 .container {
 	display: flex;
-	margin-top: calc(10px + 1rem);
+	align-items: flex-start;
+	gap: clamp(12px, 2vw, 24px);
+	width: min(100%, 1600px);
+	margin: 0 auto;
+	padding: var(--page-gutter);
+}
+
+.container > :not(.sidebar) {
+	min-width: 0;
+	width: 100%;
 }
 
 .authLayout {
@@ -66,9 +91,57 @@ button {
 	cursor: pointer;
 }
 
+button:disabled {
+	cursor: not-allowed;
+}
+
 input,
 textarea,
 select,
 button {
 	font: inherit;
+}
+
+img,
+svg,
+video,
+canvas {
+	max-width: 100%;
+}
+
+h1 {
+	font-size: clamp(1.75rem, 3vw, 2.5rem);
+	line-height: 1.15;
+	letter-spacing: -0.03em;
+}
+
+h2 {
+	font-size: clamp(1.25rem, 2vw, 1.75rem);
+	line-height: 1.2;
+	letter-spacing: -0.02em;
+}
+
+h3 {
+	font-size: clamp(1rem, 1.5vw, 1.25rem);
+	line-height: 1.25;
+}
+
+@media (max-width: 1024px) {
+	.container {
+		flex-direction: column;
+		padding: 18px;
+	}
+}
+
+@media (max-width: 640px) {
+	:root {
+		--page-gutter: 14px;
+		--card-padding: 16px;
+		--topbar-height: auto;
+	}
+
+	.container {
+		gap: 14px;
+		padding: 14px;
+	}
 }

@@ -1,49 +1,70 @@
 .mail {
-	flex: 4;
-	padding: 20px;
+	flex: 1;
+	min-width: 0;
 	color: var(--text);
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
 }
 
 .mailTitle {
-	font-size: 24px;
-	margin-bottom: 20px;
+	font-size: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .mailForm {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
-	max-width: 500px;
+	gap: 16px;
+	width: min(100%, 640px);
+	padding: var(--card-padding);
 	background: var(--bg-elevated);
-	border-radius: 16px;
+	border-radius: var(--radius-lg);
 	box-shadow: var(--shadow);
+	border: 1px solid color-mix(in srgb, var(--border) 68%, transparent);
 }
 
 .mailItem {
 	display: flex;
 	flex-direction: column;
+	gap: 8px;
 }
 
 .mailItem label {
-	margin-bottom: 5px;
-	font-weight: 600;
+	font-weight: 700;
 	color: var(--text-muted);
 }
 
 .mailItem input,
 .mailItem textarea {
-	padding: 10px;
+	width: 100%;
+	padding: 12px 14px;
 	border: 1px solid var(--border);
-	border-radius: 8px;
+	border-radius: 12px;
 	background: var(--bg-elevated);
 	color: var(--text);
+	resize: vertical;
+}
+
+.mailItem input:focus,
+.mailItem textarea:focus {
+	outline: none;
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
 }
 
 .mailButton {
-	padding: 10px;
+	align-self: flex-start;
+	padding: 12px 18px;
 	background-color: var(--accent);
 	color: white;
 	border: none;
 	cursor: pointer;
-	border-radius: 8px;
+	border-radius: 12px;
+	font-weight: 800;
+}
+
+@media (max-width: 560px) {
+	.mailButton {
+		width: 100%;
+	}
 }

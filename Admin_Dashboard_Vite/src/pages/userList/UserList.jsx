@@ -76,10 +76,13 @@ const UserList = () => {
 			width: 150,
 			renderCell: (params) => (
 				<div className='actions'>
-					<Link to={"/user/" + params.row.id}>
-						<button className='edit' aria-label='Edit user'>
-							Edit
-						</button>
+					<Link
+						to={"/user/" + params.row.id}
+						className='userListEdit'
+						aria-label='Edit user'
+						role='button'
+					>
+						Edit
 					</Link>
 
 					<DeleteOutline
