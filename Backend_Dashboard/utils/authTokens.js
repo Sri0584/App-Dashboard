@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const ACCESS_TOKEN_TTL = process.env.ACCESS_TOKEN_TTL || "15m";
 const REFRESH_TOKEN_TTL = process.env.REFRESH_TOKEN_TTL || "7d";
+const isProduction = process.env.NODE_ENV === "production";
 
 const getAccessSecret = () =>
 	process.env.ACCESS_TOKEN_SECRET || process.env.JWT_SECRET;
@@ -44,14 +45,10 @@ const verifyRefreshToken = (token) => jwt.verify(token, getRefreshSecret());
 
 const getRefreshCookieOptions = () => ({
 	httpOnly: true,
-	sameSite: "lax",
-	secure: false, // Disable secure for development (HTTP)
-	path: "/", // Allow cookie for all routes
+	sameSite: isProduction ? "none" : "lax",
+	secure: isProduction,
+	path: "/",
 	maxAge: 7 * 24 * 60 * 60 * 1000,
-	domain:
-		process.env.NODE_ENV === "production" ?
-			"app-dashboard-api-c4gvdch3fvgcgtcz.westeurope-01.azurewebsites.net"
-		:	"localhost", // Set domain for localhost in development
 });
 
 module.exports = {
