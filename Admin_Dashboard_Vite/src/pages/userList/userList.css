@@ -121,18 +121,21 @@
 	cursor: auto;
 }
 
-.userList-container .edit {
-	cursor: pointer;
-	min-width: 64px;
-	padding: 6px 10px;
-	display: flex;
-	justify-content: center;
+.userListEdit {
+	display: inline-flex;
 	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	width: auto;
+	min-width: 64px;
+	height: 32px;
+	min-height: 32px;
+	padding: 0 14px;
 	background-color: var(--success);
 	color: #ffffff;
 	cursor: pointer;
-	border-radius: 999px;
 	border: none;
+	border-radius: 999px;
 	font-weight: 800;
 	line-height: 1;
 	text-decoration: none;
