@@ -128,6 +128,26 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: var(--success);
+	color: #ffffff;
+	cursor: pointer;
+	border-radius: 999px;
+	border: none;
+	font-weight: 800;
+	line-height: 1;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.userListEdit:hover,
+.userListEdit:focus-visible {
+	background-color: color-mix(in srgb, var(--success) 86%, #000000);
+	color: #ffffff;
+}
+
+.userListEdit:focus-visible {
+	outline: 3px solid color-mix(in srgb, var(--success) 32%, transparent);
+	outline-offset: 2px;
 }
 
 .delete {
