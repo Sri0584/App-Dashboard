@@ -15,6 +15,7 @@ const sendMail = require("./routes/mailRoutes.js");
 
 const DEFAULT_FRONTEND_URL =
 	"https://orange-smoke-016ceda03.7.azurestaticapps.net";
+const DEFAULT_DB_RECONNECT_DELAY_MS = 10000;
 const apiRoutes = [
 	{
 		path: "/api/auth",
@@ -45,6 +46,48 @@ const getDatabaseStatus = () => ({
 		mongoose.connection.readyState
 	] || "unknown",
 });
+
+const getDatabaseReconnectDelay = () => {
+	const configuredDelay = Number(process.env.DB_RECONNECT_DELAY_MS);
+
+	return Number.isFinite(configuredDelay) && configuredDelay > 0 ?
+		configuredDelay
+	: 	DEFAULT_DB_RECONNECT_DELAY_MS;
+};
+
+const wait = (delayMs) =>
+	new Promise((resolve) => {
+		setTimeout(resolve, delayMs);
+	});
+
+const connectWithRetry = async ({
+	connect = connectDB,
+	retryDelayMs = getDatabaseReconnectDelay(),
+	sleep = wait,
+	maxAttempts = Number.POSITIVE_INFINITY,
+} = {}) => {
+	let attempts = 0;
+
+	while (mongoose.connection.readyState !== 1 && attempts < maxAttempts) {
+		attempts += 1;
+
+		try {
+			await connect();
+			return true;
+		} catch (error) {
+			console.error(
+				`Database connection attempt ${attempts} failed. Retrying in ${retryDelayMs}ms.`,
+				error,
+			);
+		}
+
+		if (attempts < maxAttempts) {
+			await sleep(retryDelayMs);
+		}
+	}
+
+	return mongoose.connection.readyState === 1;
+};
 
 const createApp = () => {
 	const app = express();
@@ -146,11 +189,9 @@ const startServer = async () => {
 	const PORT = process.env.PORT || 5000;
 	server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-	try {
-		await connectDB();
-	} catch (error) {
-		console.error("Server started without a database connection", error);
-	}
+	connectWithRetry().catch((error) => {
+		console.error("Unexpected database retry loop error", error);
+	});
 
 	return server;
 };
@@ -159,4 +200,4 @@ if (require.main === module) {
 	startServer();
 }
 
-module.exports = { createApp, startServer };
+module.exports = { connectWithRetry, createApp, startServer };

@@ -1,7 +1,7 @@
 const assert = require("node:assert/strict");
 const http = require("node:http");
 const { describe, it, before, after } = require("node:test");
-const { createApp } = require("./server");
+const { connectWithRetry, createApp } = require("./server");
 
 const app = createApp();
 const server = http.createServer(app);
@@ -50,5 +50,36 @@ describe("backend status routes", () => {
 		assert.equal(response.body.ok, false);
 		assert.equal(response.body.health, "/health");
 		assert.ok(response.body.message.includes("/missing-route"));
+	});
+
+	it("retries the database connection after an initial failure", async () => {
+		const retryDelays = [];
+		let attempts = 0;
+		const originalConsoleError = console.error;
+
+		console.error = () => {};
+
+		try {
+			const connected = await connectWithRetry({
+				connect: async () => {
+					attempts += 1;
+
+					if (attempts === 1) {
+						throw new Error("temporary database outage");
+					}
+				},
+				maxAttempts: 2,
+				retryDelayMs: 25,
+				sleep: async (delayMs) => {
+					retryDelays.push(delayMs);
+				},
+			});
+
+			assert.equal(connected, true);
+			assert.equal(attempts, 2);
+			assert.deepEqual(retryDelays, [25]);
+		} finally {
+			console.error = originalConsoleError;
+		}
 	});
 });
